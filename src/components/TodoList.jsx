@@ -1,5 +1,3 @@
-
-
 const TodoList = () => {
   return (
     <div>
