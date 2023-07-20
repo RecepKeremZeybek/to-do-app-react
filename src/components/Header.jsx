@@ -3,11 +3,17 @@ import { Button } from "react-bootstrap";
 import Form from "react-bootstrap/Form";
 import InputGroup from "react-bootstrap/InputGroup";
 
-const Header = ({todos, setTodos}) => {
+const Header = ({ todos, setTodos }) => {
   const [task, setTast] = useState("");
   const handleClick = () => {
-    console.log(task);
-    setTast("")
+    const newTodo = {
+      id: new Date().getTime(),
+      text: task,
+      completed: false,
+    };
+    console.log(newTodo);
+    setTodos(...todos,newTodo)
+    setTast("");
   };
   return (
     <div>
@@ -24,6 +30,7 @@ const Header = ({todos, setTodos}) => {
         <Button
           className="input-group-text bg-success rounded-2 mx-2"
           onClick={handleClick}
+          disabled={!task.trim()}
           id="basic-addon2"
         >
           Add Todo
