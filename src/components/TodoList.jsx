@@ -1,28 +1,46 @@
 import { ListGroup } from "react-bootstrap";
 
-const TodoList = ({ todos, setTodos}) => {
-  const deleteTodo = (id)=>{
-    const newTodos = todos.filter((todo)=>todo.id !==id)
-setTodos(newTodos)
-  }
+const TodoList = ({ todos, setTodos }) => {
+  const deleteTodo = (id) => {
+    const newTodos = todos.filter((todo) => todo.id !== id);
+    setTodos(newTodos);
+  };
+
+  const toggleTodo = (id) => {
+    const newTodos = todos.map((todo) =>
+      todo.id === id ? { ...todo, completed: !todo.completed } : todo
+    );
+    setTodos(newTodos);
+  };
   return (
     <div>
       <h2 className="text-center text-secondary">Todos</h2>
 
       <ListGroup className="w-50 d-flex mx-auto">
-        {todos.map((todo) => (
+        {todos.map((todo, id) => (
           <ListGroup.Item
+            key={id}
             variant="success"
+            role="button"
             className="m-2 text-capitalize rounded-5 d-flex justify-content-between"
+            onDoubleClick={() => toggleTodo(todo.id)}
           >
-             <span>{todo.text}</span>
+            <span
+              className={
+                todo.completed
+                  ? "text-decoration-line-through"
+                  : "text-decoration-none"
+              }
+            >
+              {todo.text}
+            </span>
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
               fill="red"
               role="button"
-              onClick={()=>deleteTodo(todo.id)}
+              onClick={() => deleteTodo(todo.id)}
               className="bi bi-trash3"
               viewBox="0 0 16 16"
             >

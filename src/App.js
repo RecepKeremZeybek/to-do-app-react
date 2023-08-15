@@ -6,12 +6,12 @@ import TodoList from "./components/TodoList";
 
 const todoList =[
   {
-    id:new Date().getTime(),
+    id:1,
     text:"React ile TodoList uygulaması",
     completed:false,
   },
   {
-    id:new Date().getTime(),
+    id:2,
     text:"JavaScript çalışmalısın",
     completed:false,
   }
